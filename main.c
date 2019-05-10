@@ -109,7 +109,7 @@ void write_emprunteur(emprunteur *amine)
     t=malloc(sizeof(char*));
     i=1;
     strcpy(p,"emprunteur/   ");
-    while(a->next!=NULL)
+    while(a!=NULL)
     {
         convert_to_str(i,t);
         *(p+11)=*t;
@@ -478,7 +478,7 @@ void write_emprunt(emprunt *tete)
         *(ch+9)=*(t+1);
         *(ch+10)=*(t+2);
         *(ch+11)='\0';
-        printf("emprunt ##%s\n",ch);
+       // printf("emprunt ##%s\n",ch);
         fp=fopen(ch,"w");
         fprintf(fp,"%s;%s:%s,%d@",tete->identifiant,tete->date_emprunt,tete->date_prevu_retour,tete->etat_eprunt);
         j++;
@@ -685,7 +685,7 @@ void print_book(livre *l)
     printf("quantite : %d\n",l->quantite);
     a=l->list;
     printf("mots cles : ");
-    while(a->next!=NULL)
+    while(a!=NULL)
     {
         printf("%s,",a->mots);
         a=a->next;
@@ -793,13 +793,9 @@ void main()
     x=numberofbooks=books_number();
     y=numberofemprunteur=emprunteur_number();
     z=numberofemprunt=emprunt_number();
-    printf("livre :  %d \nemprunteur : %d\nemprunt : %d\n",x,y,z);
     a=read_all_books(x);
-    printf("cc\n");
     e=read_all_emprunteur(y);
-    printf("cc\n");
     e1=read_all_emprunt(z);
-    printf("cc\n");
     quit=0;
     while(1-quit)
     {
