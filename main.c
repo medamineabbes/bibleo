@@ -77,12 +77,12 @@ void write_books(livre *book)
         fclose(fp);
         i++;
         fp=fopen(p,"a");
-        if(book->list!=NULL)
+        /*if(book->list!=NULL)
         fprintf(fp,"%s",book->list->mots);
-        book->list=book->list->next;
-        while(book->list!=NULL)
+        book->list=book->list->next;*/
+        while(book->list->next!=NULL)
         {
-            fprintf(fp,"@%s",book->list->mots);
+            fprintf(fp,"%s@",book->list->mots);
             book->list=book->list->next;
         }
     fclose(fp);
@@ -702,6 +702,16 @@ void print_emprunteur(emprunteur *a)
     printf("adress : %s\n",a->adress);
     printf("n telephone : %s\n#####################\n",a->n_telephone);
 }
+void print_all_emprunteur(emprunteur *e)
+{
+    emprunteur *a;
+    a=e;
+    while(a!=NULL)
+    {
+        print_emprunteur(a);
+        a=a->next;
+    }
+}
 void print_emprunt(emprunt *e)
 {
     if(e!=NULL)
@@ -811,7 +821,7 @@ void main()
         }
         else if(choice==1 && e!=NULL)
         {
-            print_emprunteur(e);
+            print_all_emprunteur(e);
         }
         else if(choice==1 && e==NULL)
         {
